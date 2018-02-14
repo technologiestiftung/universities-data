@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/technologiestiftung/universities-data#readme",
   "dependencies": {
+    "chai": "^4.1.2",
     "cheerio": "^1.0.0-rc.2",
+    "nightmare": "^2.10.0",
     "request": "^2.83.0"
   }
 }
