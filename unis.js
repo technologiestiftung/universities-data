@@ -39,7 +39,7 @@ function requestUni(id) {
 
                 data = {
                     id_hochschule: id,
-                    id_studien: 0,
+                    id_studien: '',
                     name: '',
                     steckbrief: {},
                     anschrift: {},
@@ -86,30 +86,39 @@ function requestUni(id) {
 }
 
 
-function writeJson(data) {
+function writeJson(data, id) {
     return new Promise( (resolve, object) => {
-        fs.writeFileSync('./data/universities.json', JSON.stringify(data), 'utf8');
+        fs.writeFileSync(`./data/unis/${id}.json`, JSON.stringify(data), 'utf8');
+        resolve();
     })
 }
 
-
-function queryUniversities() {
-
-    createCookie(urls.overview)
-        .then((resolve) => {
-
-            for (let index = 0; index <= numberUnis; index++) {
-                promises.push(requestUni(index));
-            };
-
-        }).then( (resolve) => {
-            Promise.all(promises).then( resolve  => {
-                writeJson(scraped_data);
-            }) 
-        })
+async function asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+        await callback(array[index], index, array)
+    }
 }
 
-queryUniversities();
+function fillArray(start, end) {
+    return new Promise( (resolve, reject) => {
+        let arr = [];
+        for (let index = start; index <= end; index++) {
+            arr.push(index);
+        };
+        resolve(arr);
+    });
+}
+
+const asyncQuery = async () => {
+    const arr = await fillArray(1,15); // set range of uni id's which should be scraped
+    const cookie = await createCookie(urls.overview);
+    const iterate = await asyncForEach(arr, async(item) => {
+        const req_uni = await requestUni(item);
+        const file = await writeJson(req_uni, item);
+    })
+}
+
+asyncQuery();
 
 
 

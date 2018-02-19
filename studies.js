@@ -21,7 +21,7 @@ function getCookie(url) {
 };
 
 function getData() {
-    var  fileName = './data/universities.json'
+    var  fileName = './data/unis_merged.json'
     return new Promise(function(resolve, reject){
         fs.readFile(fileName, (err, data) => {
             var parsed = JSON.parse(data);
@@ -53,9 +53,11 @@ function requestNumberStudies(id) {
     })
 }
 
-function requestStudies(id,page) {
+function requestStudies(data,page) {
  
     return new Promise( (resolve,reject) => {
+        const id = data.id_hochschule;
+        const id_studien = data.id_studien;
         
         const ext = "?tx_szhrksearch_pi1%5Bresults_at_a_time%5D=100";
         const url = `${urls.studiengaenge}${id}/pn/${page}.html${ext}`;
@@ -66,10 +68,13 @@ function requestStudies(id,page) {
                 $ = cheerio.load(body);
                 
                 var study = $('section.search-results').children('div.clearfix').children('section.result-box').each( (i,element) => {
-                    var list = {};
+                    var list = {
+                        id_hochschule: id,
+                        id_studien: id_studien
+                    };
                     var name = $(element).children('h2').text();
                     var detail_link = $(element).children('a').attr('href');
-                    var id_studiengang = filterId(detail_link);
+                    var id_studiengang = parseInt(filterId(detail_link));
                     
                     list.name = name;
                     list.id_studiengang = id_studiengang;
@@ -89,7 +94,7 @@ function requestStudies(id,page) {
 
 function writeJson(data, id) {
     return new Promise( (resolve, object) => {
-        fs.writeFileSync(`./data/${id}.json`, JSON.stringify(data), 'utf8');
+        fs.writeFileSync(`./data/studies/${id}.json`, JSON.stringify(data), 'utf8');
         resolve();
     });
 };
@@ -102,20 +107,18 @@ async function asyncForEach(array, callback) {
 
 function mergeData(json1, json2) {
     return new Promise( (resolve, reject) => {
-        let arr = [];
-        arr.push(json1);
-        arr.push(json2);
-        resolve(arr);
+        json1.concat(json2);
+        resolve(json1);
     })
 }
 
 const start = async (data) => {
     await asyncForEach(data, async (item) => {
-        let merged = [];
-        const studyPage1 = await requestStudies(item.id_hochschule,0);
-        const studyPage2 = await requestStudies(item.id_hochschule,1);
+        const studyPage1 = await requestStudies(item,0);
+        const studyPage2 = await requestStudies(item,1);
         const merge = await mergeData(studyPage1, studyPage2);
-        const log = await writeJson(merge, item.id_hochschule);
+        const feedback = await console.log(`#${merge[2].id_studien} written.`);
+        const log = await writeJson(merge, merge[0].id_studien);
     });
 }
 
