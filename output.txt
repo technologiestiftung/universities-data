@@ -1,0 +1,60 @@
+<section class="result-box" data-timer="1519060920.3962">
+    <h2>Wirtschaftsrecht</h2>
+    <ul class="info list-inline">
+        <li>
+            <span class="title">Hochschule</span>
+            <span class="status">IUBH Internationale Hochschule</span>
+        </li>
+        <li>
+            <span class="title">Studienort</span>
+            <span class="status">Bad Reichenhall</span>
+        </li>
+        <li>
+            <span class="title">Abschluss</span>
+            <span class="status">Bachelor of Laws</span>
+        </li>
+        <li>
+            <span class="title">Studientyp</span>
+            <span class="status">grundst&#xE4;ndig</span>
+        </li>
+        <li>
+            <span class="title">Studienform</span>
+            <span class="status">Fernstudium, Vollzeitstudium</span>
+        </li>
+                    <li>
+                <span class="title">SiT-Passung</span>
+                <span class="status">
+                    <span class="icon-signal"></span>
+                                    </span>
+            </li>
+            </ul>
+    <a href="/studium/studiengangsuche/erweiterte-studiengangsuche/detail/all/search/1/studtyp/3/hslauf/329/pn/65.html?tx_szhrksearch_pi1%5Bresults_at_a_time%5D=100" class="btn-info btn">
+        Mehr Erfahren
+    </a>
+    <div class="marked">
+                                    <a href="#" class="icon-tag2" onclick="return false;"></a>
+                            <span class="tooltip">Zur Merkliste hinzuf&#xFC;gen (Bitte loggen Sie sich ein)</span>
+            </div>
+    <div class="popup-holder">
+        <div id="popupNewFolder1960392" class="lightbox">
+            <form class="addlist-form edit-directory" action="#">
+                <fieldset>
+                    <div class="field-holder">
+                        <label>Neuen Ordner erstellen</label>
+                        <input type="text" class="form-control szss-marked-title" placeholder="Ordnername eingeben...">
+                    </div>
+                    <div class="field-holder">
+                        <label>Zu Ordner hinzuf&#xFC;gen</label>
+                        <select class="szss-marked-name jcf-hidden">
+                            <option value="">Bitte ausw&#xE4;hlen</option>
+                                                    </select>
+                    </div>
+                    <input type="hidden" class="merklistItems" value="">
+                    <input type="hidden" class="oldFolder" value="">
+                    <input type="hidden" class="search-type" value="studium">
+                    <input type="submit" class="btn btn-info" value="Speichern">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>

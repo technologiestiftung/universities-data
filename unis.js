@@ -85,7 +85,6 @@ function requestUni(id) {
     })
 }
 
-
 function writeJson(data, id) {
     return new Promise( (resolve, object) => {
         fs.writeFileSync(`./data/unis/${id}.json`, JSON.stringify(data), 'utf8');
@@ -110,7 +109,7 @@ function fillArray(start, end) {
 }
 
 const asyncQuery = async () => {
-    const arr = await fillArray(16,25); // set range of uni id's which should be scraped
+    const arr = await fillArray(26,383); // set range of uni id's which should be scraped
     const cookie = await createCookie(urls.overview);
     const iterate = await asyncForEach(arr, async(item) => {
         const req_uni = await requestUni(item);

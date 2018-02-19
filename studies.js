@@ -60,18 +60,21 @@ function requestStudies(data,page) {
         const id_studien = data.id_studien;
         
         const ext = "?tx_szhrksearch_pi1%5Bresults_at_a_time%5D=100";
-        const url = `${urls.studiengaenge}${id}/pn/${page}.html${ext}`;
+        const url = `${urls.studiengaenge}${data.id_studien}/pn/${page}.html${ext}`;
+
+        console.log(url);
         
         req.get(url, (error, response, body) => {
             if(!error && response.statusCode == 200) { 
                 let data_unis = [];
                 $ = cheerio.load(body);
                 
-                var study = $('section.search-results').children('div.clearfix').children('section.result-box').each( (i,element) => {
+                var study = $('section.result-box').each( (i,element) => {
                     var list = {
                         id_hochschule: id,
                         id_studien: id_studien
                     };
+                    fs.writeFileSync('output.txt', $(element), 'utf8');
                     var name = $(element).children('h2').text();
                     var detail_link = $(element).children('a').attr('href');
                     var id_studiengang = parseInt(filterId(detail_link));
