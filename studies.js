@@ -61,13 +61,18 @@ function requestStudies(data,page) {
         
         const ext = "?tx_szhrksearch_pi1%5Bresults_at_a_time%5D=100";
         const url = `${urls.studiengaenge}${data.id_studien}/pn/${page}.html${ext}`;
-
-        console.log(url);
         
         req.get(url, (error, response, body) => {
             if(!error && response.statusCode == 200) { 
                 let data_unis = [];
                 $ = cheerio.load(body);
+
+                const search_results = filterCountStudies($('section.search-results').children('p').text().trim());
+                console.log(`Studies Count: ${search_results}`);
+                if(search_results < 100 && page === 1) {
+                    resolve();
+                }
+                
                 
                 var study = $('section.result-box').each( (i,element) => {
                     var list = {
@@ -108,9 +113,9 @@ async function asyncForEach(array, callback) {
     }
 };
 
-function mergeData(json1, json2) {
+function mergeData(json1, json2, json3, json4) {
     return new Promise( (resolve, reject) => {
-        json1.concat(json2);
+        json1 = json1.concat(json2, json3, json4);
         resolve(json1);
     })
 }
@@ -119,8 +124,10 @@ const start = async (data) => {
     await asyncForEach(data, async (item) => {
         const studyPage1 = await requestStudies(item,0);
         const studyPage2 = await requestStudies(item,1);
-        const merge = await mergeData(studyPage1, studyPage2);
-        const feedback = await console.log(`#${merge[2].id_studien} written.`);
+        const studyPage3 = await requestStudies(item,2);
+        const studyPage4 = await requestStudies(item,3);
+        const merge = await mergeData(studyPage1, studyPage2, studyPage3, studyPage4);
+        const feedback = await console.log(`#${merge[0].id_studien} written.`);
         const log = await writeJson(merge, merge[0].id_studien);
     });
 }

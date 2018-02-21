@@ -1,17 +1,17 @@
-<section class="result-box" data-timer="1519208262.8185">
-    <h2>Wirtschaftsrecht</h2>
+<section class="result-box" data-timer="1519216080.1236">
+    <h2>Wirtschaftsingenieurwesen (Berufsbegleitendes Studienprogramm der Weiterbildungsakademie der Hochschule Aalen)</h2>
     <ul class="info list-inline">
         <li>
             <span class="title">Hochschule</span>
-            <span class="status">IUBH Internationale Hochschule</span>
+            <span class="status">Hochschule Aalen</span>
         </li>
         <li>
             <span class="title">Studienort</span>
-            <span class="status">Bad Reichenhall</span>
+            <span class="status">Aalen</span>
         </li>
         <li>
             <span class="title">Abschluss</span>
-            <span class="status">Bachelor of Laws</span>
+            <span class="status">Bachelor</span>
         </li>
         <li>
             <span class="title">Studientyp</span>
@@ -19,7 +19,7 @@
         </li>
         <li>
             <span class="title">Studienform</span>
-            <span class="status">Fernstudium, Vollzeitstudium</span>
+            <span class="status">Berufsbegleitend, Teilzeitstudium</span>
         </li>
                     <li>
                 <span class="title">SiT-Passung</span>
@@ -28,7 +28,7 @@
                                     </span>
             </li>
             </ul>
-    <a href="/studium/studiengangsuche/erweiterte-studiengangsuche/detail/all/search/1/studtyp/3/hslauf/329/pn/65.html?tx_szhrksearch_pi1%5Bresults_at_a_time%5D=100" class="btn-info btn">
+    <a href="/studium/studiengangsuche/erweiterte-studiengangsuche/detail/all/search/1/studtyp/3/hslauf/3/pn/65.html?tx_szhrksearch_pi1%5Bresults_at_a_time%5D=100" class="btn-info btn">
         Mehr Erfahren
     </a>
     <div class="marked">
@@ -36,7 +36,7 @@
                             <span class="tooltip">Zur Merkliste hinzuf&#xFC;gen (Bitte loggen Sie sich ein)</span>
             </div>
     <div class="popup-holder">
-        <div id="popupNewFolder1960392" class="lightbox">
+        <div id="popupNewFolder2165813" class="lightbox">
             <form class="addlist-form edit-directory" action="#">
                 <fieldset>
                     <div class="field-holder">

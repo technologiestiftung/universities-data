@@ -36,7 +36,7 @@ function writeJson(data, id) {
 };
 
 const mergeFiles = async () => {
-    const arr = await fillArray(1,25);
+    const arr = await fillArray(1,380);
 
     const iterate = await asyncForEach( arr, async(item) => {
         const read = await readFile(item);
