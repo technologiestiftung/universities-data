@@ -1,4 +1,4 @@
-<section class="result-box" data-timer="1519060920.3962">
+<section class="result-box" data-timer="1519208262.8185">
     <h2>Wirtschaftsrecht</h2>
     <ul class="info list-inline">
         <li>

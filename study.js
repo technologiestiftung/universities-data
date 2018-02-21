@@ -3,6 +3,8 @@ const folder = './data/studies';
 const request = require('request');
 const cheerio = require('cheerio');
 
+let $;
+
 urls = {
     cookie: "https://www.hochschulkompass.de/studium/studiengangsuche/erweiterte-studiengangsuche.html?tx_szhrksearch_pi1%5Bsearch%5D=1&genios=&tx_szhrksearch_pi1%5Bfach%5D=&tx_szhrksearch_pi1%5Bstudtyp%5D=3&tx_szhrksearch_pi1%5Bzusemester%5D=&tx_szhrksearch_pi1%5Blehramt%5D=&tx_szhrksearch_pi1%5Bsprache%5D=&tx_szhrksearch_pi1%5Bname%5D=&tx_szhrksearch_pi1%5Bplz%5D=&tx_szhrksearch_pi1%5Bort%5D=&tx_szhrksearch_pi1%5Btraegerschaft%5D=",
     studiengaenge: "https://www.hochschulkompass.de/studium/studiengangsuche/erweiterte-studiengangsuche/search/1/studtyp/3/hslauf/"
@@ -37,7 +39,8 @@ function getData(fileName) {
     });
 };
 
-function getCookie(url) {
+function getCookie(id_studien) {
+    const url = `https://www.hochschulkompass.de/studium/studiengangsuche/erweiterte-studiengangsuche/search/1/studtyp/3/hslauf/${id_studien}/pn/0.html?tx_szhrksearch_pi1%5Bresults_at_a_time%5D=100`
     return new Promise( (resolve, reject) => {
         req.get(url, (error, response, body) =>{ 
             console.log('cookie created ...');
@@ -53,16 +56,45 @@ async function asyncForEach(array, callback) {
 };
 
 function requestStudy (data) {
-    
+    return new Promise( (resolve,reject) => {
+        const id_studiengang = data.id_studiengang;
+        const id_studien = data.id_studien;
+
+        const url = `https://www.hochschulkompass.de/studium/studiengangsuche/erweiterte-studiengangsuche/detail/all/search/1/studtyp/3/hslauf/${id_studien}/pn/${id_studiengang}.html`
+
+        console.log(url);
+
+        req.get(url, (error, response, body) => {
+            if(!error && response.statusCode == 200) {
+                let list = {};
+                $ = cheerio.load(body);
+                const header = $('header.head-area').children('h1').text();
+
+                list.Name = header;
+
+                $('div.content-box').children('ul.info.list-inline').each((index, element) => {
+                    const ul = $(element);
+                    ul.children('li').each((index, element) => {
+                        const title = $(element).children('span.title').text().trim().replace('                ', ' ');
+                        const status = $(element).children('span.status').text().trim().replace('                ', ' ');
+                        list[title] = status;
+                    })
+                })
+                resolve(list);
+            }
+        })
+    })
 }
 
 const asyncQuery = async () => {
+    const id_studien = 329; // zuerst korrekten cookie setzen: siehe links.txt
     const files = await readDir(folder);
-    const cookie = await getCookie(urls.cookie);
-    // put inside loop 
-    const study_list = await getData(files[0]);
-
-    console.log(study_list[5]); // mit richtiger id austauschen (for-loop);
+    // for each file
+    const list_studies = await getData(files[2]);
+    console.log(Object.keys(list_studies).length);
+    // const data_study = list_studies[15];
+    // const cookie = await getCookie(data_study.id_studien); 
+    // const study_data = await requestStudy(data_study);
 }
 
 
