@@ -1,6 +1,6 @@
 
 ////// detail
-https://www.hochschulkompass.de/studium/studiengangsuche/erweiterte-studiengangsuche/detail/all/search/1/studtyp/3/hslauf/502/pn/0.html
+https://www.hochschulkompass.de/studium/studiengangsuche/erweiterte-studiengangsuche/detail/all/search/1/studtyp/3/hslauf/395/pn/1.html?tx_szhrksearch_pi1%5Bresults_at_a_time%5D=100
 
 ////// Alle Studiengänge
-https://www.hochschulkompass.de/studium/studiengangsuche/erweiterte-studiengangsuche/search/1/studtyp/3/hslauf/502/pn/0.html?tx_szhrksearch_pi1%5Bresults_at_a_time%5D=100
+https://www.hochschulkompass.de/studium/studiengangsuche/erweiterte-studiengangsuche/search/1/studtyp/3/hslauf/395/pn/0.html?tx_szhrksearch_pi1%5Bresults_at_a_time%5D=100
