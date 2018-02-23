@@ -109,7 +109,7 @@ function fillArray(start, end) {
 }
 
 const asyncQuery = async () => {
-    const arr = await fillArray(26,383); // set range of uni id's which should be scraped
+    const arr = await fillArray(1,381); // set range of uni id's which should be scraped
     const cookie = await createCookie(urls.overview);
     const iterate = await asyncForEach(arr, async(item) => {
         const req_uni = await requestUni(item);
