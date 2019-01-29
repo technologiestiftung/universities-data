@@ -1,5 +1,7 @@
 # Datascraper
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/technologiestiftung/universities-data.svg)](https://greenkeeper.io/)
+
 1. run npm i
 2. run mkdir /data/unis data/studies data/study
 3. nun node unis.js to scrape all universities.
